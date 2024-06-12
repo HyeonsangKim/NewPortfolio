@@ -17,19 +17,19 @@ const generateParticles = (
   canvasHeight: number
 ): Particle[] => {
   const particles: Particle[] = [];
-  const colors = ["rgba(255, 0, 0, ", "rgba(0, 255, 0, ", "rgba(0, 0, 255, "];
+  const colors = ["rgba(18, 234, 255, ", "rgba(255, 72, 72, "];
 
   for (let i = 0; i < numParticles; i++) {
     particles.push({
       x: Math.random() * canvasWidth,
       y: Math.random() * canvasHeight,
-      radius: Math.random() * 2 + 1,
+      //   radius: Math.random() * 2 + 1,
+      radius: 1.2,
       color: `${colors[Math.floor(Math.random() * colors.length)]}0.3)`,
       velocityX: (Math.random() - 0.5) * 0.1,
       velocityY: (Math.random() - 0.5) * 0.1,
     });
   }
-  console.log(particles);
 
   return particles;
 };
@@ -47,11 +47,12 @@ const ParticlesCanvas: React.FC = () => {
     if (canvas && context) {
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
-      particlesRef.current = generateParticles(300, canvasWidth, canvasHeight);
+      particlesRef.current = generateParticles(200, canvasWidth, canvasHeight);
 
       const animate = () => {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
-
+        context.fillStyle = "#1a1a1a";
+        context.fillRect(0, 0, canvasWidth, canvasHeight);
         particlesRef.current.forEach((particle) => {
           particle.x += particle.velocityX;
           particle.y += particle.velocityY;
@@ -91,9 +92,9 @@ const ParticlesCanvas: React.FC = () => {
           const force = (maxDistance - distance) / maxDistance;
 
           if (distance < maxDistance) {
-            particle.color = `${particle.color.slice(0, -4)}0.8)`;
+            particle.color = `${particle.color.slice(0, -4)}0.7)`;
           } else {
-            particle.color = `${particle.color.slice(0, -4)}0.2)`;
+            particle.color = `${particle.color.slice(0, -4)}0.3)`;
           }
         });
       };
@@ -106,18 +107,7 @@ const ParticlesCanvas: React.FC = () => {
     }
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        zIndex: -1,
-        display: "block",
-      }}
-    />
-  );
+  return <canvas ref={canvasRef} className="absolute" />;
 };
 
 export default ParticlesCanvas;
