@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Events, Link, scrollSpy } from "react-scroll";
+import { Link } from "react-scroll";
 
-function Header() {
+function Header({ currentSection }: { currentSection: string }) {
   const [isSticky, setIsSticky] = useState<Boolean>(false);
-  const [current, setCurrent] = useState<string>("");
   const { ref, inView } = useInView({
     threshold: 0,
     onChange: (inView) => setIsSticky(!inView),
@@ -14,27 +13,22 @@ function Header() {
     <>
       <div ref={ref} className="h-0"></div>
       <header
-        className={`flex justify-end items-center transition-transform duration-300 border-blue-50 ${
-          isSticky
-            ? "sticky h-10 top-0 bg-gray-800 text-white p-4 z-50"
-            : "relative h-10 bg-gray-800 text-white p-4 z-50"
+        className={`flex justify-end items-center transition-transform duration-300 pr-5 ${
+          isSticky ? "sticky top-0 header" : "relative header"
         }`}
       >
         <nav>
           <ul className="flex space-x-4">
             <li>
               <Link
-                to="home"
+                to="main"
+                offset={-100}
                 smooth={true}
                 duration={500}
-                className={`hover:underline cursor-pointer ${
-                  current === "" ? "text-blue-400 " : "text-white"
+                className={`hover:text-blue-500 cursor-pointer ${
+                  currentSection === "main" ? "text-blue-500 " : "text-white"
                 }`}
                 spy={true}
-                onSetActive={() => {
-                  console.log("dd");
-                  setCurrent("");
-                }}
               >
                 Home
               </Link>
@@ -44,17 +38,14 @@ function Header() {
                 to="section1"
                 smooth={true}
                 duration={500}
-                offset={-200}
-                className={`hover:underline cursor-pointer ${
-                  current === "section1" ? "text-blue-400 " : "text-white"
+                className={`hover:text-blue-500 cursor-pointer ${
+                  currentSection === "section1"
+                    ? "text-blue-500 "
+                    : "text-white"
                 }`}
                 spy={true}
-                onSetActive={() => {
-                  console.log("dd");
-                  setCurrent("section1");
-                }}
               >
-                섹션 1
+                About
               </Link>
             </li>
             <li>
@@ -62,17 +53,29 @@ function Header() {
                 to="section2"
                 smooth={true}
                 duration={500}
-                offset={-200}
-                className={`hover:underline cursor-pointer ${
-                  current === "section2" ? "text-blue-400 " : "text-white"
+                className={`hover:text-blue-500 cursor-pointer ${
+                  currentSection === "section2"
+                    ? "text-blue-500 "
+                    : "text-white"
                 }`}
                 spy={true}
-                onSetActive={() => {
-                  console.log("dd");
-                  setCurrent("section2");
-                }}
               >
-                섹션 2
+                Expriences
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="section3"
+                smooth={true}
+                duration={500}
+                className={`hover:text-blue-500 cursor-pointer ${
+                  currentSection === "section3"
+                    ? "text-blue-500 "
+                    : "text-white"
+                }`}
+                spy={true}
+              >
+                Project
               </Link>
             </li>
           </ul>

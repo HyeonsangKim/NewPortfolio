@@ -16,6 +16,7 @@ const config: Config = {
       colors: {
         backCol: "#1a1a1a",
         customRed: "#ff4d5a",
+        headerCol: "#282828F2",
       },
     },
   },

@@ -9,6 +9,12 @@
 }
 @layer components {
   .section {
-    @apply min-h-screen pt-16 p-8;
+    @apply min-h-screen;
+  }
+  .header {
+    @apply h-12 bg-headerCol text-white p-4 z-50 border-b border-gray-900 backdrop-blur-lg shadow-[0_4px_4px_rgba(0,0,0,0.3)];
+  }
+  .titleBox {
+    @apply text-white text-5xl font-bold before:border-[#3B82F6] before:block before:relative before:top-[3.2rem] before:-z-10;
   }
 }

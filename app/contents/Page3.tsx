@@ -1,7 +1,7 @@
 import ParticlesCanvas from "@/components/ParticleCanvas";
 import { useEffect, useRef } from "react";
 
-export default function Page2({ onVisible }: any) {
+export default function Page3({ onVisible }: any) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ export default function Page2({ onVisible }: any) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            onVisible("section2");
+            onVisible("section3");
           }
         });
       },
@@ -27,16 +27,10 @@ export default function Page2({ onVisible }: any) {
     };
   }, [onVisible]);
   return (
-    <section id="section2" ref={sectionRef} className="section">
+    <section ref={sectionRef} id="section3" className="section">
       <ParticlesCanvas />
-      <div className="pt-16">
-        <div className="relative w-full text-center mb-10 flex justify-center gap-2">
-          <div className="titleBox before:w-[22rem] before:border-b-[1.4rem] before:left-7">
-            Job Expriences
-          </div>
-        </div>
-        <p className="text-white mt-4 p-10">여기는 첫 번째 페이지입니다.</p>
-      </div>
+      <h1 className="text-white text-4xl font-bold pt-10">메인 페이지</h1>
+      <p className="text-white mt-4">여기는 두 번째 페이지입니다.</p>
     </section>
   );
 }

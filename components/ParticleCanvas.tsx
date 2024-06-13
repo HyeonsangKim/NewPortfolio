@@ -47,7 +47,7 @@ const ParticlesCanvas: React.FC = () => {
     if (canvas && context) {
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
-      particlesRef.current = generateParticles(200, canvasWidth, canvasHeight);
+      particlesRef.current = generateParticles(300, canvasWidth, canvasHeight);
 
       const animate = () => {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -107,7 +107,7 @@ const ParticlesCanvas: React.FC = () => {
     }
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute" />;
+  return <canvas ref={canvasRef} className="absolute -z-10" />;
 };
 
 export default ParticlesCanvas;
