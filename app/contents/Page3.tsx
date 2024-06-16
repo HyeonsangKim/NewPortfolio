@@ -28,7 +28,7 @@ export default function Page3({ onVisible }: any) {
   }, [onVisible]);
   return (
     <section ref={sectionRef} id="section3" className="section">
-      <ParticlesCanvas />
+      {/* <ParticlesCanvas /> */}
       <h1 className="text-white text-4xl font-bold pt-10">메인 페이지</h1>
       <p className="text-white mt-4">여기는 두 번째 페이지입니다.</p>
     </section>

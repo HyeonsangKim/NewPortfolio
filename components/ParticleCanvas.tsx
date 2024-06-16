@@ -42,12 +42,25 @@ const ParticlesCanvas: React.FC = () => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
     const canvasWidth = window.innerWidth;
-    const canvasHeight = window.innerHeight;
+    const canvasHeight = document.body.scrollHeight;
+    const resizeCanvas = () => {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = document.body.scrollHeight;
 
+        // Re-generate particles for the new canvas size
+        particlesRef.current = generateParticles(
+          600,
+          canvas.width,
+          canvas.height
+        );
+      }
+    };
     if (canvas && context) {
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
-      particlesRef.current = generateParticles(300, canvasWidth, canvasHeight);
+      particlesRef.current = generateParticles(600, canvasWidth, canvasHeight);
 
       const animate = () => {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -100,9 +113,13 @@ const ParticlesCanvas: React.FC = () => {
       };
 
       window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("resize", resizeCanvas);
 
       return () => {
+        console.log("[opop");
+
         window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("resize", resizeCanvas);
       };
     }
   }, []);
