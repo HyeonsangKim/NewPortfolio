@@ -36,7 +36,7 @@ export default function Page1({ onVisible }: any) {
 
   useEffect(() => {
     const totalIcons = 10;
-    const interval = 200; // 200ms 간격으로 아이콘을 밝히기
+    const interval = 100; // 200ms 간격으로 아이콘을 밝히기
     if (isInView) {
       const intervalId = setInterval(() => {
         setVisibleIcons((prev) => {

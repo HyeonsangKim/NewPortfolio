@@ -27,10 +27,15 @@ export default function Page3({ onVisible }: any) {
     };
   }, [onVisible]);
   return (
-    <section ref={sectionRef} id="section3" className="section">
+    <section ref={sectionRef} id="section3" className="section m-auto">
       {/* <ParticlesCanvas /> */}
-      <h1 className="text-white text-4xl font-bold pt-10">메인 페이지</h1>
-      <p className="text-white mt-4">여기는 두 번째 페이지입니다.</p>
+      <div className="lg:px-28 pt-16">
+        <div className="relative w-full text-center mb-10 flex justify-center gap-2">
+          <div className="titleBox md:before:w-[23.5rem] before:w-[17.5rem] before:border-b-[1.4rem] before:left-7">
+            Personal Project
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

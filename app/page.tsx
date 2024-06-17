@@ -5,6 +5,7 @@ import { useState } from "react";
 import Main from "./main/page";
 import Page3 from "./contents/Page3";
 import Page1 from "./contents/Page1";
+import ParticlesCanvas from "@/components/ParticleCanvas";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("main");
@@ -15,6 +16,7 @@ export default function Home() {
   return (
     <div>
       <main className="min-h-screen">
+        <ParticlesCanvas />
         <Main onVisible={handleSectionVisible} />
         <Header currentSection={currentSection} />
         <Page1 onVisible={handleSectionVisible} />

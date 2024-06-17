@@ -95,14 +95,13 @@ const ParticlesCanvas: React.FC = () => {
       animate();
       const handleMouseMove = (event: MouseEvent) => {
         const mouseX = event.clientX;
-        const mouseY = event.clientY;
+        const mouseY = event.clientY + window.scrollY;
 
         particlesRef.current.forEach((particle) => {
           const dx = particle.x - mouseX;
           const dy = particle.y - mouseY;
           const distance = Math.sqrt(dx * dx + dy * dy);
           const maxDistance = 100;
-          const force = (maxDistance - distance) / maxDistance;
 
           if (distance < maxDistance) {
             particle.color = `${particle.color.slice(0, -4)}0.7)`;
@@ -116,8 +115,6 @@ const ParticlesCanvas: React.FC = () => {
       window.addEventListener("resize", resizeCanvas);
 
       return () => {
-        console.log("[opop");
-
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("resize", resizeCanvas);
       };

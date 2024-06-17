@@ -40,7 +40,6 @@ export default function Main({ onVisible }: any) {
   return (
     //h-screen bg-gray-100 flex items-center justify-center
     <div id="main" ref={mainRef} className="flex justify-center min-h-screen">
-      <ParticlesCanvas />
       <div className="relative w-full h-screen flex flex-col justify-center items-center gap-2">
         <div
           className={`${
