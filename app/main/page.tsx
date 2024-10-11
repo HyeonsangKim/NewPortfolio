@@ -47,7 +47,7 @@ export default function Main({ onVisible }: any) {
               : "transform -translate-x-10 opacity-0"
           }`}
         >
-          <span className="text-white text-4xl">Hello, I'm </span>
+          <span className="text-white text-4xl">Hello, I&apos;m </span>
           <span className="text-blue-500 text-4xl">Hyeonsang Kim</span>
           <span className="text-white text-4xl">.</span>
         </div>
@@ -58,7 +58,9 @@ export default function Main({ onVisible }: any) {
               : "transform translate-x-10 opacity-0"
           }`}
         >
-          <h1 className="text-white text-4xl">I'm a front end developer.</h1>
+          <h1 className="text-white text-4xl">
+            I&apos;m a front end developer.
+          </h1>
         </div>
 
         <div
