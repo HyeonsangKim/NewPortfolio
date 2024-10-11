@@ -1,4 +1,4 @@
-import ParticlesCanvas from "@/components/ParticleCanvas";
+"use client";
 import { useEffect, useRef } from "react";
 
 export default function Page3({ onVisible }: any) {

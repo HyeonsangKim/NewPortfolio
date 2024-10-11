@@ -1,3 +1,4 @@
+"use client";
 import ExperienceSection from "@/components/ExprienceList";
 import ParticlesCanvas from "@/components/ParticleCanvas";
 import { useEffect, useRef, useState } from "react";

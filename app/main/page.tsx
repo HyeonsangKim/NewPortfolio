@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-import ParticlesCanvas from "@/components/ParticleCanvas";
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-scroll";
 
