@@ -91,8 +91,8 @@ export default function Page1({ onVisible }: any) {
               keeping fit and playing guitar.
             </p>
           </div>
-          <div className="flex flex-row items-center md:gap-5">
-            <div className="flex flex-col mr-5">
+          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 scale-75 sm:scale-90 md:scale-100">
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
               <IconBox
                 imgName="html"
                 name="HTML"
@@ -109,7 +109,7 @@ export default function Page1({ onVisible }: any) {
                 visibleIcons={visibleIcons.includes(2)}
               />
             </div>
-            <div className="flex flex-col mr-5">
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
               <IconBox
                 imgName="react"
                 name="React"
@@ -131,7 +131,7 @@ export default function Page1({ onVisible }: any) {
                 visibleIcons={visibleIcons.includes(6)}
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
               <IconBox
                 imgName="graphql"
                 name="GraphQL"
