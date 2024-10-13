@@ -82,13 +82,13 @@ export default function Page1({ onVisible }: any) {
               className="rounded-full mb-6"
             />
             <p className="text-white px-4 sm:px-6 md:px-8 py-3 text-sm sm:text-base md:text-lg lg:text-xl text-left font-mono">
-              Fully committed to the philosophy of life-long learning, I'm a
-              full stack developer with a deep passion for JavaScript, React and
-              all things web development. The unique combination of creativity,
-              logic, technology and never running out of new things to discover,
-              drives my excitement and passion for web development. When I'm not
-              at my computer I like to spend my time reading, keeping fit and
-              playing guitar.
+              Fully committed to the philosophy of life-long learning, I&apos;m
+              a full stack developer with a deep passion for JavaScript, React
+              and all things web development. The unique combination of
+              creativity, logic, technology and never running out of new things
+              to discover, drives my excitement and passion for web development.
+              When I&apos;m not at my computer I like to spend my time reading,
+              keeping fit and playing guitar.
             </p>
           </div>
           <div className="flex flex-row items-center md:gap-5">
