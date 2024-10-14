@@ -6,6 +6,16 @@ import IconBox from "@/components/IconBox";
 export default function Page1({ onVisible }: any) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,7 +45,7 @@ export default function Page1({ onVisible }: any) {
 
   useEffect(() => {
     const totalIcons = 10;
-    const interval = 100;
+    const interval = isMobile ? 50 : 100;
     if (isInView) {
       const intervalId = setInterval(() => {
         setVisibleIcons((prev) => {
@@ -56,7 +66,23 @@ export default function Page1({ onVisible }: any) {
 
       return () => clearInterval(intervalId);
     }
-  }, [isInView]);
+  }, [isInView, isMobile]);
+
+  const getImageAnimationClass = () => {
+    if (!isInView) return "opacity-0 scale-50";
+    if (isMobile) {
+      return "animate-zoomInFade";
+    }
+    return "transform scale-100 opacity-100 transition duration-1000 ease-out";
+  };
+
+  const getTextAnimationClass = () => {
+    if (!isInView) return "opacity-0 translate-y-10";
+    if (isMobile) {
+      return "animate-slideUpFade";
+    }
+    return "transform translate-y-0 opacity-100 transition duration-1000 ease-out delay-500";
+  };
 
   return (
     <section id="section1" ref={sectionRef} className="section m-auto">
@@ -67,29 +93,33 @@ export default function Page1({ onVisible }: any) {
           </div>
         </div>
         <div className="w-full text-center mb-10 flex flex-col justify-center items-center gap-8 mt-12 md:mt-24 transition-all duration-200 lg:flex-row">
-          <div
-            className={`flex flex-col items-center max-w-2xl ${
-              isInView
-                ? "transform translate-x-0 opacity-100 transition duration-1000 ease-out"
-                : "transform -translate-x-full opacity-0"
-            }`}
-          >
-            <Image
-              src={"/me.jpeg"}
-              alt={"me"}
-              width={200}
-              height={180}
-              className="rounded-full mb-6"
-            />
-            <p className="text-white px-4 sm:px-6 md:px-8 py-3 text-sm sm:text-base md:text-lg lg:text-xl text-left font-mono">
-              Fully committed to the philosophy of life-long learning, I&apos;m
-              a full stack developer with a deep passion for JavaScript, React
-              and all things web development. The unique combination of
-              creativity, logic, technology and never running out of new things
-              to discover, drives my excitement and passion for web development.
-              When I&apos;m not at my computer I like to spend my time reading,
-              keeping fit and playing guitar.
-            </p>
+          <div className="flex flex-col items-center max-w-2xl rounded-lg p-6 lg:p-8">
+            <div className={`${getImageAnimationClass()} mb-6`}>
+              <Image
+                src={"/me.jpeg"}
+                alt={"me"}
+                width={200}
+                height={180}
+                className="rounded-full border-4 border-blue-500 shadow-lg"
+              />
+            </div>
+            <div className={`space-y-4 ${getTextAnimationClass()}`}>
+              <h2 className="text-2xl font-bold text-blue-400 mb-4">
+                Hi, I&apos;m Hyeonsang Kim
+              </h2>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                I&apos;m a passionate full stack developer with a deep love for
+                JavaScript, React, and all things web development.
+              </p>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Committed to lifelong learning, I thrive on the unique blend of
+                creativity, logic, and technology that web development offers.
+              </p>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                When I&apos;m not coding, you&apos;ll find me engrossed in a
+                good book, staying fit, or strumming my guitar.
+              </p>
+            </div>
           </div>
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 scale-75 sm:scale-90 md:scale-100">
             <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">

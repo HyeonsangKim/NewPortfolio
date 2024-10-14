@@ -23,6 +23,20 @@ const config: Config = {
       screens: {
         "custom-lg": "1300px", // 1300px 이상일 때 적용될 스타일
       },
+      keyframes: {
+        zoomInFade: {
+          "0%": { opacity: "0", transform: "scale(0.5)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        slideUpFade: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        zoomInFade: "zoomInFade 0.8s ease-out forwards",
+        slideUpFade: "slideUpFade 0.8s ease-out forwards 0.4s",
+      },
     },
   },
   plugins: [],

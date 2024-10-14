@@ -3,27 +3,17 @@ import { Link } from "react-scroll";
 
 function Header({ currentSection }: { currentSection: string }) {
   const [isSticky, setIsSticky] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY) {
-        // 아래로 스크롤
-        setIsSticky(currentScrollY > 50);
-      } else {
-        // 위로 스크롤
-        setIsSticky(currentScrollY > 100);
-      }
-
-      setLastScrollY(currentScrollY);
+      setIsSticky(currentScrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const navItems = [
     { to: "main", label: "Home" },

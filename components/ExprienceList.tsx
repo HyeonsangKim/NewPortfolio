@@ -2,12 +2,17 @@ import React from "react";
 
 const experiences = [
   {
-    date: "2024.04 - 2024.06",
-    job: "Frontend Engineer",
-    title: "PurpleEnglish Application",
+    date: "2024.03 - 2024.06",
+    job: "Front-End Developer",
+    title: "Purple English Platform (React Native)",
     description:
-      "Description of Project ADescription of Project Description of Project Description of Project Description of Project Description of Project Description of Project Description of Project Description of Project ",
-    stacks: ["ReactNative", "JavaScript"],
+      "Redeveloped an educational platform with 5,000+ CCSS-based activities for early childhood English education. Implemented interactive features like alphabet tracing and ebook functionality using React Native, SVG, and WebView. Overcame cross-platform challenges to ensure consistent UX across various devices.",
+    stacks: ["React Native", "React", "JavaScript", "SVG"],
+    // achievements: [
+    //   "Gained expertise in React Native drag events, SVG, and Animated API",
+    //   "Improved code modularity and reusability across web and mobile platforms",
+    //   "Enhanced cross-platform development skills and UX considerations",
+    // ],
   },
   {
     date: "2023.06 - 2024.03",
@@ -48,7 +53,7 @@ function ExperienceSection({ isInView }: { isInView: boolean }) {
         <div
           key={index}
           className={`flex flex-col md:flex-row ${
-            index % 2 === 0 ? "lg:justify-start" : "lg:justify-end"
+            index % 2 === 0 ? "md:justify-start" : "md:justify-end"
           } transition-all duration-1000 ease-out transform ${
             isInView
               ? "opacity-100 translate-x-0"
@@ -58,41 +63,41 @@ function ExperienceSection({ isInView }: { isInView: boolean }) {
           }`}
         >
           <div
-            className={`flex lg:w-4/5 w-full p-4 rounded-md flex-col ${
+            className={`flex md:w-4/5 w-full p-6 rounded-lg bg-[#242424] bg-opacity-50 backdrop-blur-sm shadow-lg ${
               index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            } items-center`}
+            } items-start`}
           >
             <div
-              className={`md:w-1/4 w-full h-full ${
-                index % 2 === 0 ? "text-left" : "lg:text-right"
-              } mb-1`}
+              className={`md:w-1/4 w-full ${
+                index % 2 === 0 ? "md:text-left" : "md:text-right"
+              } mb-4 md:mb-0`}
             >
-              <p className="text-sm lg:text-base font-sans text-white text-opacity-85">
+              <p className="text-sm lg:text-base font-semibold text-blue-300">
                 {experience.date}
               </p>
-              <p className="text-xs lg:text-sm font-sans text-white text-opacity-85">
+              <p className="text-xs lg:text-sm text-gray-400">
                 {experience.job}
               </p>
             </div>
             <div
               className={`md:w-3/4 w-full ${
-                index % 2 === 0 ? "text-left" : "text-right"
+                index % 2 === 0 ? "md:pl-6" : "md:pr-6"
               }`}
             >
-              <h2 className="text-xl font-mono text-left font-bold text-white mb-4">
+              <h3 className="text-xl font-bold text-white mb-2">
                 {experience.title}
-              </h2>
-              <p className="text-white font-mono text-left text-sm md:text-base text-opacity-75">
+              </h3>
+              <p className="text-gray-300 text-sm md:text-base mb-4">
                 {experience.description}
               </p>
-              <div className="gap-3 flex flex-row mt-3">
+              <div className="flex flex-wrap gap-2">
                 {experience.stacks.map((stack, index) => (
-                  <p
+                  <span
                     key={index}
-                    className="bg-teal-400/10 text-teal-300 rounded-full p-1 px-3 text-xs"
+                    className="bg-blue-500 bg-opacity-20 text-blue-300 rounded-full px-3 py-1 text-xs"
                   >
                     {stack}
-                  </p>
+                  </span>
                 ))}
               </div>
             </div>

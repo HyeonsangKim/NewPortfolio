@@ -1,4 +1,5 @@
 "use client";
+import { PersonalProject } from "@/components/Project";
 import { useEffect, useRef, useState } from "react";
 
 export default function Page3({ onVisible }: any) {
@@ -35,6 +36,9 @@ export default function Page3({ onVisible }: any) {
           <div className="titleBox md:before:w-[23.5rem] before:w-[17.5rem] before:border-b-[1.4rem] before:left-7">
             Personal Project
           </div>
+        </div>
+        <div className="p-3">
+          <PersonalProject isInView={isInView} />
         </div>
       </div>
     </section>
