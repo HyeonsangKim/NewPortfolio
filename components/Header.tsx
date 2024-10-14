@@ -1,87 +1,69 @@
-import { useState } from "react";
-import { useInView } from "react-intersection-observer";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 
 function Header({ currentSection }: { currentSection: string }) {
-  const [isSticky, setIsSticky] = useState<Boolean>(false);
-  const { ref, inView } = useInView({
-    threshold: 0,
-    onChange: (inView) => setIsSticky(!inView),
-  });
+  const [isSticky, setIsSticky] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // 아래로 스크롤
+        setIsSticky(currentScrollY > 50);
+      } else {
+        // 위로 스크롤
+        setIsSticky(currentScrollY > 100);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  const navItems = [
+    { to: "main", label: "Home" },
+    { to: "section1", label: "About" },
+    { to: "section2", label: "Experience" },
+    { to: "section3", label: "Project" },
+  ];
 
   return (
-    <>
-      <div ref={ref} className="h-0"></div>
-      <header
-        className={`flex justify-end items-center transition-transform duration-300 pr-5 ${
-          isSticky ? "sticky top-0 header" : "relative header"
-        }`}
-      >
-        <nav>
-          <ul className="flex space-x-4">
-            <li>
+    <header
+      className={`fixed top-0 left-0 w-full transition-all duration-300 z-50
+        ${isSticky ? "bg-gray-900 shadow-lg py-2" : "bg-transparent py-4"}`}
+    >
+      <nav className="container mx-auto px-4">
+        <ul className="flex justify-end space-x-6">
+          {navItems.map((item) => (
+            <li key={item.to}>
               <Link
-                to="main"
-                offset={-100}
+                to={item.to}
                 smooth={true}
                 duration={500}
-                className={`hover:text-blue-500 cursor-pointer ${
-                  currentSection === "main" ? "text-blue-500 " : "text-white"
-                }`}
+                offset={-70}
                 spy={true}
+                className={`
+                  cursor-pointer text-lg font-medium 
+                  transition-colors duration-300
+                  ${
+                    currentSection === item.to
+                      ? "text-blue-500"
+                      : "text-white hover:text-blue-300"
+                  }
+                `}
               >
-                Home
+                {item.label}
               </Link>
             </li>
-            <li>
-              <Link
-                to="section1"
-                smooth={true}
-                duration={500}
-                className={`hover:text-blue-500 cursor-pointer ${
-                  currentSection === "section1"
-                    ? "text-blue-500 "
-                    : "text-white"
-                }`}
-                spy={true}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="section2"
-                smooth={true}
-                duration={500}
-                className={`hover:text-blue-500 cursor-pointer ${
-                  currentSection === "section2"
-                    ? "text-blue-500 "
-                    : "text-white"
-                }`}
-                spy={true}
-              >
-                Expriences
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="section3"
-                smooth={true}
-                duration={500}
-                className={`hover:text-blue-500 cursor-pointer ${
-                  currentSection === "section3"
-                    ? "text-blue-500 "
-                    : "text-white"
-                }`}
-                spy={true}
-              >
-                Project
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </>
+          ))}
+        </ul>
+      </nav>
+    </header>
   );
 }
 

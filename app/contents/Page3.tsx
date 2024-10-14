@@ -1,15 +1,16 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Page3({ onVisible }: any) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-
+  const [isInView, setIsInView] = useState<boolean>(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             onVisible("section3");
+            setIsInView(true);
           }
         });
       },
