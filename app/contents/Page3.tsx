@@ -13,7 +13,7 @@ export default function Page3({ onVisible }: any) {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
