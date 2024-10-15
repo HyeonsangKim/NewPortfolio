@@ -11,34 +11,36 @@ const experiences = [
   },
   {
     date: "2023.06 - 2024.03",
-    job: "Frontend Engineer",
-    title: "PurpleEnglish",
+    job: "Front-End Developer",
+    title: "Purple English Educational Platform",
     description:
-      "Description of Project ADescription of Project Description of Project Description of Project Description of Project Description of Project Description of Project Description of Project Description of Project ",
-    stacks: ["React", "JavaScript", "HTML&CSS"],
+      "Developed an educational platform based on CCSS, providing over 5,000 diverse activities for early childhood English education. Implemented interactive features using React.js, focusing on user engagement and effective learning experiences.",
+    stacks: ["React.js", "SVG", "GSAP", "JavaScript"],
   },
   {
-    date: "2022.11 - 2023.02",
-    job: "Fullstack Engineer",
-    title: "JCON",
-    description: "JCON",
-    stacks: ["JAVA", "Spring", "JQuery", "MySQL", "HTML&CSS"],
+    date: "2022.09 - 2023.03",
+    job: "Full-stack Developer",
+    title: "Aigoseo - Smart Platform for Ancient Korean Translation",
+    description:
+      "Contributed to the development of 'aigoseo', a national public sector project for translating and managing historical texts. Implemented complex features including character recognition and data comparison for ancient Korean texts.",
+    stacks: ["Spring Boot", "MariaDB", "jQuery", "REST", "HTML", "CSS", "SQL"],
   },
   {
-    date: "2022.08 - 2022.09",
-    job: "Frontend Engineer",
-    title: "IEZAMS",
-    description: "IEZAMS",
-    stacks: ["React", "JavaScript"],
+    date: "2022.07 - 2022.09",
+    job: "Front-End Developer",
+    title: "In-House Attendance Platform",
+    description:
+      "Developed a React-based platform for company employees to record attendance, submit leave requests, and manage approval documents. Designed and implemented the entire front-end architecture, ensuring a user-friendly and responsive interface.",
+    stacks: ["React", "REST", "HTML", "CSS"],
   },
   {
-    date: "2022.03 - 2022.07",
-    job: "Fullstack Engineer",
-    title: "PODOPODO",
-    description: "PODOPODO",
-    stacks: ["JAVA", "Spring", "JQuery", "MySQL", "HTML&CSS"],
+    date: "2022.04 - 2022.07",
+    job: "Full-stack Developer",
+    title: "PODOPODO Wine Sales Website",
+    description:
+      "Contributed to the development of a wine sales website using Spring Boot, Thymeleaf, and jQuery. Implemented core features including homepage, user profile management, shopping cart, and search functionality using Elasticsearch.",
+    stacks: ["Spring Boot", "Thymeleaf", "jQuery", "MariaDB", "Elasticsearch"],
   },
-  // 더 많은 경력 추가
 ];
 
 function ExperienceSection({ isInView }: { isInView: boolean }) {

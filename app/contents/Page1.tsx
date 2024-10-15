@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import IconBox from "@/components/IconBox";
 import { useVisibility } from "../hooks/useVisibility";
@@ -18,47 +18,57 @@ export default function Page1({ onVisible }: any) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  useEffect(() => {
+  const animateIcons = useCallback(() => {
     const totalIcons = 10;
     const interval = isMobile ? 50 : 100;
-    if (isInView) {
-      const intervalId = setInterval(() => {
-        setVisibleIcons((prev) => {
-          if (prev.length < totalIcons) {
-            const newVisibleIcons = [...prev];
-            let randomIndex;
-            do {
-              randomIndex = Math.floor(Math.random() * totalIcons);
-            } while (newVisibleIcons.includes(randomIndex));
-            newVisibleIcons.push(randomIndex);
-            return newVisibleIcons;
-          } else {
-            clearInterval(intervalId);
-            return prev;
-          }
-        });
-      }, interval);
 
-      return () => clearInterval(intervalId);
+    const intervalId = setInterval(() => {
+      setVisibleIcons((prev) => {
+        if (prev.length < totalIcons) {
+          const newVisibleIcons = [...prev];
+          let randomIndex;
+          do {
+            randomIndex = Math.floor(Math.random() * totalIcons);
+          } while (newVisibleIcons.includes(randomIndex));
+          newVisibleIcons.push(randomIndex);
+          return newVisibleIcons;
+        } else {
+          clearInterval(intervalId);
+          return prev;
+        }
+      });
+    }, interval);
+
+    return () => clearInterval(intervalId);
+  }, [isMobile]);
+
+  useEffect(() => {
+    let cleanup: (() => void) | undefined;
+
+    if (isInView) {
+      cleanup = animateIcons();
+    } else {
+      setVisibleIcons([]);
     }
-  }, [isInView, isMobile]);
+
+    return () => {
+      if (cleanup) cleanup();
+    };
+  }, [isInView, animateIcons]);
 
   const getImageAnimationClass = () => {
     if (!isInView) return "opacity-0 scale-50";
-    if (isMobile) {
-      return "animate-zoomInFade";
-    }
-    return "transform scale-100 opacity-100 transition duration-1000 ease-out";
+    return isMobile
+      ? "animate-zoomInFade"
+      : "transform scale-100 opacity-100 transition duration-1000 ease-out";
   };
 
   const getTextAnimationClass = () => {
     if (!isInView) return "opacity-0 translate-y-10";
-    if (isMobile) {
-      return "animate-slideUpFade";
-    }
-    return "transform translate-y-0 opacity-100 transition duration-1000 ease-out delay-500";
+    return isMobile
+      ? "animate-slideUpFade"
+      : "transform translate-y-0 opacity-100 transition duration-1000 ease-out delay-500";
   };
-
   return (
     <section id="section1" ref={sectionRef} className="section m-auto">
       <div className="px-4 sm:px-8 md:px-16 lg:px-28 pt-16">

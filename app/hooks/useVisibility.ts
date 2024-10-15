@@ -11,18 +11,13 @@ export function useVisibility(
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
           if (entry.isIntersecting) {
-            setIsInView(true);
             onVisible(sectionId);
-          } else {
-            setIsInView(false);
           }
         });
       },
-      {
-        threshold: 0.1, // 10% 가 보이면 감지
-        rootMargin: "-10% 0px -10% 0px", // 상하 10% 여유 공간
-      }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
