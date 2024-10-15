@@ -18,7 +18,7 @@ export default function Home() {
       <main className="min-h-screen">
         <ParticlesCanvas />
         <Main onVisible={handleSectionVisible} />
-        <Header currentSection={currentSection} />
+        <Header />
         <Page1 onVisible={handleSectionVisible} />
         <Page2 onVisible={handleSectionVisible} />
         <Page3 onVisible={handleSectionVisible} />
