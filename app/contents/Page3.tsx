@@ -1,33 +1,10 @@
 "use client";
 import { PersonalProject } from "@/components/Project";
-import { useEffect, useRef, useState } from "react";
+import { useVisibility } from "../hooks/useVisibility";
 
 export default function Page3({ onVisible }: any) {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isInView, setIsInView] = useState<boolean>(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            onVisible("section3");
-            setIsInView(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  const { sectionRef, isInView } = useVisibility("main", onVisible);
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [onVisible]);
   return (
     <section ref={sectionRef} id="section3" className="section m-auto">
       {/* <ParticlesCanvas /> */}

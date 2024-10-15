@@ -1,40 +1,14 @@
 "use client";
 import ExperienceSection from "@/components/ExprienceList";
-import ParticlesCanvas from "@/components/ParticleCanvas";
-import { useEffect, useRef, useState } from "react";
+import { useVisibility } from "../hooks/useVisibility";
 
 export default function Page2({ onVisible }: any) {
-  const sectionRef2 = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState<boolean>(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            onVisible("section2");
-            setIsInView(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef2.current) {
-      observer.observe(sectionRef2.current);
-    }
-
-    return () => {
-      if (sectionRef2.current) {
-        observer.unobserve(sectionRef2.current);
-      }
-    };
-  }, [onVisible]);
+  const { sectionRef, isInView } = useVisibility("main", onVisible);
 
   return (
     <section
       id="section2"
-      ref={sectionRef2}
+      ref={sectionRef}
       className="section m-auto relative min-h-screen"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 relative z-10">

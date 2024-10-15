@@ -2,11 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import IconBox from "@/components/IconBox";
+import { useVisibility } from "../hooks/useVisibility";
 
 export default function Page1({ onVisible }: any) {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isInView, setIsInView] = useState(false);
+  const { sectionRef, isInView } = useVisibility("section1", onVisible);
   const [isMobile, setIsMobile] = useState(false);
+  const [visibleIcons, setVisibleIcons] = useState<number[]>([]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -16,32 +17,6 @@ export default function Page1({ onVisible }: any) {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            onVisible("section1");
-            setIsInView(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [onVisible]);
-
-  const [visibleIcons, setVisibleIcons] = useState<number[]>([]);
 
   useEffect(() => {
     const totalIcons = 10;
