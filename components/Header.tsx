@@ -13,7 +13,6 @@ function Header() {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // react-scroll 이벤트 설정
     Events.scrollEvent.register("begin", (to, element) => {
       setActiveSection(to);
     });
@@ -40,9 +39,9 @@ function Header() {
         ${isSticky ? "bg-gray-900 shadow-lg py-2" : "bg-transparent py-4"}`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ul className="flex justify-end space-x-4 pr-4">
+        <ul className="flex flex-wrap justify-center md:justify-end space-x-2 md:space-x-4">
           {navItems.map((item) => (
-            <li key={item.to}>
+            <li key={item.to} className="mb-2 md:mb-0">
               <Link
                 to={item.to}
                 smooth={true}
@@ -51,8 +50,8 @@ function Header() {
                 spy={true}
                 onSetActive={() => setActiveSection(item.to)}
                 className={`
-                  cursor-pointer text-base font-medium 
-                  transition-colors duration-300
+                  cursor-pointer text-sm md:text-base font-medium 
+                  transition-colors duration-300 px-2 py-1
                   ${
                     activeSection === item.to
                       ? "text-blue-500"
@@ -69,5 +68,4 @@ function Header() {
     </header>
   );
 }
-
 export default Header;

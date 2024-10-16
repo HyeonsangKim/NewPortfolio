@@ -1,10 +1,19 @@
 "use client";
 import ExperienceSection from "@/components/ExprienceList";
 import { useVisibility } from "../hooks/useVisibility";
+import { useLanguage } from "../hooks/languageContext";
+import { useEffect, useState } from "react";
 
 export default function Page2({ onVisible }: any) {
   const { sectionRef, isInView } = useVisibility("main", onVisible);
-
+  const { language } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    if (isInView) {
+      setIsVisible(true);
+    }
+  }, [isInView]);
+  const getText = (ko: string, en: string) => (language === "ko" ? ko : en);
   return (
     <section
       id="section2"
@@ -13,10 +22,20 @@ export default function Page2({ onVisible }: any) {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white inline-block relative">
-            Job Experiences
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-          </h2>
+          <div className={`titleBox relative inline-block`}>
+            {getText("경 력", "Job Experiences")}
+            <div
+              className={`
+          absolute -bottom-0.5 left-0 h-4 bg-blue-500
+          transition-all duration-1000 ease-out
+          ${isVisible ? "w-[calc(100%)]" : "w-0"}
+        `}
+              style={{
+                zIndex: -1,
+                transform: "skew(-10deg)",
+              }}
+            />
+          </div>
         </div>
         <div className="p-3">
           <ExperienceSection isInView={isInView} />
