@@ -22,6 +22,7 @@ const config: Config = {
       },
       screens: {
         "custom-lg": "1300px",
+        xxs: "360px",
       },
       keyframes: {
         zoomInFade: {
