@@ -2,9 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-scroll";
 import { useVisibility } from "../hooks/useVisibility";
-import CommonProps from "../type/common";
 
-export default function Main({ onVisible, language }: CommonProps) {
+export default function Main({ onVisible, language }: any) {
   const { sectionRef, isInView } = useVisibility("main", onVisible);
   const [btnAnimation, setBtnAnimation] = useState(false);
 

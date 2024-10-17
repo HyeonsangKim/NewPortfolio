@@ -3,10 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import IconBox from "@/components/IconBox";
 import { useVisibility } from "../hooks/useVisibility";
-import { useLanguage } from "../hooks/languageContext";
-import CommonProps from "../type/common";
 
-export default function Page1({ onVisible, language }: CommonProps) {
+export default function Page1({ onVisible, language }: any) {
   const { sectionRef, isInView } = useVisibility("section1", onVisible);
   const [isMobile, setIsMobile] = useState(false);
   const [visibleIcons, setVisibleIcons] = useState<number[]>([]);
