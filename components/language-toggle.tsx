@@ -1,3 +1,4 @@
+"use client";
 import { useLanguage } from "@/app/hooks/languageContext";
 import React, { useState } from "react";
 

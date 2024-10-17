@@ -3,10 +3,10 @@ import ExperienceSection from "@/components/ExprienceList";
 import { useVisibility } from "../hooks/useVisibility";
 import { useLanguage } from "../hooks/languageContext";
 import { useEffect, useState } from "react";
+import { CommonProps } from "../type/common";
 
-export default function Page2({ onVisible }: any) {
+export default function Page2({ onVisible, language }: CommonProps) {
   const { sectionRef, isInView } = useVisibility("main", onVisible);
-  const { language } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     if (isInView) {

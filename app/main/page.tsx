@@ -2,12 +2,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-scroll";
 import { useVisibility } from "../hooks/useVisibility";
-import { useLanguage } from "../hooks/languageContext";
+import { CommonProps } from "../type/common";
 
-export default function Main({ onVisible }: any) {
+export default function Main({ onVisible, language }: CommonProps) {
   const { sectionRef, isInView } = useVisibility("main", onVisible);
   const [btnAnimation, setBtnAnimation] = useState(false);
-  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     setTimeout(() => {

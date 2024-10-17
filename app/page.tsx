@@ -11,7 +11,7 @@ import LanguageToggle from "@/components/language-toggle";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("main");
-  const [language, setLanguage] = useState<"ko" | "en">("ko");
+  const [language, setLanguage] = useState<"ko" | "en">("en");
   const handleSectionVisible = (id: string) => {
     setCurrentSection(id);
   };
@@ -20,11 +20,11 @@ export default function Home() {
       <div>
         <main className="min-h-screen">
           <ParticlesCanvas />
-          <Main onVisible={handleSectionVisible} />
+          <Main onVisible={handleSectionVisible} language={language} />
           <Header />
-          <Page1 onVisible={handleSectionVisible} />
-          <Page2 onVisible={handleSectionVisible} />
-          <Page3 onVisible={handleSectionVisible} />
+          <Page1 onVisible={handleSectionVisible} language={language} />
+          <Page2 onVisible={handleSectionVisible} language={language} />
+          <Page3 onVisible={handleSectionVisible} language={language} />
           <LanguageToggle />
         </main>
       </div>
