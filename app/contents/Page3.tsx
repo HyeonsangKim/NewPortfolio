@@ -3,7 +3,7 @@ import { PersonalProject } from "@/components/Project";
 import { useVisibility } from "../hooks/useVisibility";
 import { useEffect, useState } from "react";
 import { useLanguage } from "../hooks/languageContext";
-import { CommonProps } from "../type/common";
+import CommonProps from "../type/common";
 
 export default function Page3({ onVisible, language }: CommonProps) {
   const { sectionRef, isInView } = useVisibility("main", onVisible);

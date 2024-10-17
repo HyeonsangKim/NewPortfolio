@@ -4,7 +4,7 @@ import Image from "next/image";
 import IconBox from "@/components/IconBox";
 import { useVisibility } from "../hooks/useVisibility";
 import { useLanguage } from "../hooks/languageContext";
-import { CommonProps } from "../type/common";
+import CommonProps from "../type/common";
 
 export default function Page1({ onVisible, language }: CommonProps) {
   const { sectionRef, isInView } = useVisibility("section1", onVisible);

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-scroll";
 import { useVisibility } from "../hooks/useVisibility";
-import { CommonProps } from "../type/common";
+import CommonProps from "../type/common";
 
 export default function Main({ onVisible, language }: CommonProps) {
   const { sectionRef, isInView } = useVisibility("main", onVisible);
