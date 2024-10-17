@@ -4,7 +4,7 @@ import { useVisibility } from "../hooks/useVisibility";
 import { useEffect, useState } from "react";
 
 export default function Page2({ onVisible, language }: any) {
-  const { sectionRef, isInView } = useVisibility("main", onVisible);
+  const { sectionRef, isInView } = useVisibility("section2", onVisible);
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     if (isInView) {

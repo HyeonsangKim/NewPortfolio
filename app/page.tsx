@@ -8,6 +8,8 @@ import Page1 from "./contents/Page1";
 import ParticlesCanvas from "@/components/ParticleCanvas";
 import { LanguageContext } from "./hooks/languageContext";
 import LanguageToggle from "@/components/language-toggle";
+import Page4 from "./contents/Page4";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState("main");
@@ -25,7 +27,9 @@ export default function Home() {
           <Page1 onVisible={handleSectionVisible} language={language} />
           <Page2 onVisible={handleSectionVisible} language={language} />
           <Page3 onVisible={handleSectionVisible} language={language} />
+          <Page4 onVisible={handleSectionVisible} language={language} />
           <LanguageToggle />
+          <Footer />
         </main>
       </div>
     </LanguageContext.Provider>

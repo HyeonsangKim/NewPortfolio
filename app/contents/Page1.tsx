@@ -134,16 +134,25 @@ export default function Page1({ onVisible, language }: any) {
                 imgName="html"
                 name="HTML"
                 visibleIcons={visibleIcons.includes(0)}
+                proficiency="Advanced"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="css"
                 name="CSS"
                 visibleIcons={visibleIcons.includes(1)}
+                proficiency="Advanced"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="js"
                 name="JavaScript"
                 visibleIcons={visibleIcons.includes(2)}
+                proficiency="Advanced"
+                language={language}
+                getText={getText}
               />
             </div>
             <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
@@ -151,21 +160,33 @@ export default function Page1({ onVisible, language }: any) {
                 imgName="react"
                 name="React"
                 visibleIcons={visibleIcons.includes(3)}
+                proficiency="Advanced"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="reactnative"
                 name="ReactNative"
                 visibleIcons={visibleIcons.includes(4)}
+                proficiency="Intermediate"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="next"
                 name="Next"
                 visibleIcons={visibleIcons.includes(5)}
+                proficiency="Intermediate"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="nestjs"
                 name="Nest"
                 visibleIcons={visibleIcons.includes(6)}
+                proficiency="Beginner"
+                language={language}
+                getText={getText}
               />
             </div>
             <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
@@ -173,16 +194,25 @@ export default function Page1({ onVisible, language }: any) {
                 imgName="graphql"
                 name="GraphQL"
                 visibleIcons={visibleIcons.includes(7)}
+                proficiency="Beginner"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="java"
                 name="JAVA"
                 visibleIcons={visibleIcons.includes(8)}
+                proficiency="Advanced"
+                language={language}
+                getText={getText}
               />
               <IconBox
                 imgName="mysql"
                 name="MySQL"
                 visibleIcons={visibleIcons.includes(9)}
+                proficiency="Advanced"
+                language={language}
+                getText={getText}
               />
             </div>
           </div>
