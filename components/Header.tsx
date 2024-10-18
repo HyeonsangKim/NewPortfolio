@@ -1,20 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-scroll";
+import React, { useState, useEffect, useCallback } from "react";
+import { Link, Events, scrollSpy } from "react-scroll";
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [activeSection, setActiveSection] = useState("main");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 50);
-    };
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    setIsSticky(currentScrollY > 50);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    Events.scrollEvent.register("begin", (to, element) => {
+      setActiveSection(to);
+    });
+
+    scrollSpy.update();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      Events.scrollEvent.remove("begin");
     };
-  }, []);
+  }, [handleScroll]);
 
   const navItems = [
     { to: "main", label: "Home" },
@@ -39,6 +48,7 @@ function Header() {
                 duration={500}
                 spy={true}
                 offset={-70}
+                onSetActive={() => setActiveSection(item.to)}
                 className={`
                   cursor-pointer text-[10px] xxs:text-xs sm:text-sm md:text-base font-medium 
                   transition-colors duration-300 px-1 sm:px-2 py-1
@@ -48,7 +58,6 @@ function Header() {
                       : "text-white hover:text-blue-300"
                   }
                 `}
-                onClick={() => setActiveSection(item.to)}
               >
                 {item.label}
               </Link>
