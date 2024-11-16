@@ -22,7 +22,7 @@ export default function Page3({ onVisible, language }: any) {
       ref={sectionRef}
       id="section3"
       className="section m-auto relative flex flex-col justify-center
-        items-center"
+        items-center mt-14"
     >
       {/* <ParticlesCanvas /> */}
       <div className="">
@@ -31,7 +31,7 @@ export default function Page3({ onVisible, language }: any) {
             {getText("개인 프로젝트", "Personal Project")}
             <div
               className={`
-          absolute -bottom-0.5 left-0 h-4 bg-indigo-400
+          absolute -bottom-0.5 left-0 h-4 bg-indigo-500
           transition-all duration-1000 ease-out
           ${isVisible ? "w-[calc(100%)]" : "w-0"}
         `}

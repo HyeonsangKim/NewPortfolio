@@ -198,12 +198,12 @@ export function PersonalProject({
                       transform
                       transition-all
                       duration-500
-                      hover:text-indigo-400
+                      hover:text-indigo-500
                     "
                     >
                       {projectData.title[language]}
                     </h3>
-                    <p className="text-xs md:text-sm lg:text-base xl:text-lg text-indigo-400 mb-2">
+                    <p className="text-xs md:text-sm lg:text-base xl:text-lg text-indigo-500 mb-2">
                       {projectData.subtitle[language]}
                     </p>
 
@@ -232,6 +232,7 @@ export function PersonalProject({
                           hover:shadow-lg
                           hover:shadow-indigo-500/20
                           active:translate-y-0
+                          items-center
                         "
                       >
                         GitHub
@@ -246,7 +247,7 @@ export function PersonalProject({
                             py-1.5 md:py-2 
                             text-xs md:text-sm lg:text-base 
                             font-medium 
-                            text-indigo-300 
+                            text-indigo-400 
                             border 
                             border-indigo-500/30 
                             rounded-lg

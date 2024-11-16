@@ -24,7 +24,7 @@ export default function Page2({ onVisible, language }: any) {
             {getText("경 력", "Job Experiences")}
             <div
               className={`
-          absolute -bottom-0.5 left-0 h-4 bg-indigo-400
+          absolute -bottom-0.5 left-0 h-4 bg-indigo-500
           transition-all duration-1000 ease-out
           ${isVisible ? "w-[calc(100%)]" : "w-0"}
         `}

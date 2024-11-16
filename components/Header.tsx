@@ -54,8 +54,8 @@ function Header() {
                   transition-colors duration-300 px-1 sm:px-2 py-1
                   ${
                     activeSection === item.to
-                      ? "text-indigo-400"
-                      : "text-white hover:text-blue-300"
+                      ? "text-indigo-500"
+                      : "text-white hover:text-indigo-400"
                   }
                 `}
               >
