@@ -73,7 +73,7 @@ export default function Page4({ onVisible, language }: any) {
             {getText("연락하기", "Contact")}
             <div
               className={`
-          absolute -bottom-0.5 left-0 h-4 bg-blue-500
+          absolute -bottom-0.5 left-0 h-4 bg-indigo-400
           transition-all duration-1000 ease-out
           ${isVisible ? "w-[calc(100%)]" : "w-0"}
         `}

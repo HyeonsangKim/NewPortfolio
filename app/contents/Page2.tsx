@@ -24,7 +24,7 @@ export default function Page2({ onVisible, language }: any) {
             {getText("경 력", "Job Experiences")}
             <div
               className={`
-          absolute -bottom-0.5 left-0 h-4 bg-blue-500
+          absolute -bottom-0.5 left-0 h-4 bg-indigo-400
           transition-all duration-1000 ease-out
           ${isVisible ? "w-[calc(100%)]" : "w-0"}
         `}
@@ -35,8 +35,8 @@ export default function Page2({ onVisible, language }: any) {
             />
           </div>
         </div>
-        <div className="p-3">
-          <ExperienceSection isInView={isInView} />
+        <div>
+          <ExperienceSection isInView={isInView} language={language} />
         </div>
       </div>
     </section>

@@ -82,7 +82,7 @@ export default function Page1({ onVisible, language }: any) {
             {getText("소 개", "About")}
             <div
               className={`
-          absolute -bottom-0.5 left-0 h-4 bg-blue-500
+          absolute -bottom-0.5 left-0 h-4 bg-indigo-400
           transition-all duration-1000 ease-out
           ${isVisible ? "w-[calc(100%)]" : "w-0"}
         `}
@@ -101,7 +101,7 @@ export default function Page1({ onVisible, language }: any) {
                 alt={"me"}
                 width={200}
                 height={180}
-                className="rounded-full border-4 border-blue-500 shadow-lg"
+                className="rounded-full border-4 border-indigo-400 shadow-lg"
               />
             </div>
             <div className={`opacity-0 space-y-4 ${getTextAnimationClass()}`}>

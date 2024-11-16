@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             href="https://github.com/HyeonsangKim"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xl sm:text-2xl md:text-3xl hover:text-blue-500 transition-colors duration-300"
+            className="text-xl sm:text-2xl md:text-3xl hover:text-indigo-400 transition-colors duration-300"
           >
             <FaGithub />
           </a>
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
             href="https://www.linkedin.com/in/hyeonsang-kim-5a7a67260"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xl sm:text-2xl md:text-3xl hover:text-blue-500 transition-colors duration-300"
+            className="text-xl sm:text-2xl md:text-3xl hover:text-indigo-400 transition-colors duration-300"
           >
             <FaLinkedin />
           </a>

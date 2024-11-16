@@ -21,16 +21,17 @@ export default function Page3({ onVisible, language }: any) {
     <section
       ref={sectionRef}
       id="section3"
-      className="section m-auto relative min-h-screen"
+      className="section m-auto relative flex flex-col justify-center
+        items-center"
     >
       {/* <ParticlesCanvas /> */}
-      <div className="lg:px-28 pt-16">
+      <div className="">
         <div className="relative w-full text-center mb-10 flex justify-center gap-2">
           <div className={`titleBox relative inline-block`}>
             {getText("개인 프로젝트", "Personal Project")}
             <div
               className={`
-          absolute -bottom-0.5 left-0 h-4 bg-blue-500
+          absolute -bottom-0.5 left-0 h-4 bg-indigo-400
           transition-all duration-1000 ease-out
           ${isVisible ? "w-[calc(100%)]" : "w-0"}
         `}
@@ -41,9 +42,7 @@ export default function Page3({ onVisible, language }: any) {
             />
           </div>
         </div>
-        <div className="p-3">
-          <PersonalProject isInView={isInView} />
-        </div>
+        <PersonalProject isInView={isInView} language={language} />
       </div>
     </section>
   );

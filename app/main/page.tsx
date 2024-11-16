@@ -70,7 +70,7 @@ export default function Main({ onVisible, language }: any) {
             }`}
           >
             <span className="text-white text-2xl sm:text-3xl md:text-4xl">
-              <span className="text-blue-500">김현상</span> 입니다.
+              <span className="text-indigo-400">김현상</span> 입니다.
             </span>
           </div>
         </>
@@ -96,7 +96,7 @@ export default function Main({ onVisible, language }: any) {
                 : "transform translate-x-10 opacity-0"
             }`}
           >
-            <span className="text-blue-500 text-2xl sm:text-3xl md:text-4xl">
+            <span className="text-indigo-400 text-2xl sm:text-3xl md:text-4xl">
               Hyeonsang Kim
             </span>
           </div>
@@ -136,9 +136,9 @@ export default function Main({ onVisible, language }: any) {
             to="section1"
             smooth={true}
             duration={500}
-            className="inline-block border-2 px-6 py-2 border-blue-500 transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+            className="inline-block border-2 px-6 py-2 border-indigo-400 transform transition-transform duration-300 hover:scale-105 cursor-pointer"
           >
-            <span className="text-blue-500">
+            <span className="text-indigo-400">
               {language === "ko" ? "내 소개 ↓" : "About me ↓"}
             </span>
           </Link>

@@ -33,50 +33,52 @@ const generateParticles = (
 
 const ParticlesCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const particlesRef = useRef<Particle[]>([]);
+  const animationFrameRef = useRef<number>();
+  const mousePositionRef = useRef({ x: 0, y: 0 });
 
   const updateCanvasSize = () => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
+    if (canvasRef.current) {
+      canvasRef.current.width = window.innerWidth;
+      canvasRef.current.height = window.innerHeight;
+      particlesRef.current = generateParticles(
+        200,
+        window.innerWidth,
+        window.innerHeight
+      );
+    }
   };
 
   useEffect(() => {
     updateCanvasSize();
     window.addEventListener("resize", updateCanvasSize);
-    return () => window.removeEventListener("resize", updateCanvasSize);
-  }, []);
 
-  useEffect(() => {
-    if (dimensions.width > 0 && dimensions.height > 0) {
-      setParticles(generateParticles(200, dimensions.width, dimensions.height));
-    }
-  }, [dimensions]);
-
-  useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
-    if (canvas && context && particles.length > 0) {
-      canvas.width = dimensions.width;
-      canvas.height = dimensions.height;
-
+    if (canvas && context) {
       const animate = () => {
-        context.clearRect(0, 0, dimensions.width, dimensions.height);
         context.fillStyle = "#1a1a1a";
-        context.fillRect(0, 0, dimensions.width, dimensions.height);
+        context.fillRect(0, 0, canvas.width, canvas.height);
 
-        particles.forEach((particle) => {
+        particlesRef.current.forEach((particle) => {
+          // 움직임 업데이트
           particle.x += particle.velocityX;
           particle.y += particle.velocityY;
 
-          if (particle.x < 0 || particle.x > dimensions.width)
+          // 경계 체크
+          if (particle.x < 0 || particle.x > canvas.width)
             particle.velocityX *= -1;
-          if (particle.y < 0 || particle.y > dimensions.height)
+          if (particle.y < 0 || particle.y > canvas.height)
             particle.velocityY *= -1;
 
+          // 마우스와의 거리 계산
+          const dx = particle.x - mousePositionRef.current.x;
+          const dy = particle.y - mousePositionRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = 100;
+
+          // 파티클 그리기
           context.beginPath();
           context.arc(
             particle.x,
@@ -86,44 +88,36 @@ const ParticlesCanvas: React.FC = () => {
             Math.PI * 2,
             false
           );
-          context.fillStyle = particle.color;
+          context.fillStyle =
+            distance < maxDistance
+              ? `${particle.color.slice(0, -4)}0.7)`
+              : `${particle.color.slice(0, -4)}0.3)`;
           context.fill();
         });
 
-        requestAnimationFrame(animate);
+        animationFrameRef.current = requestAnimationFrame(animate);
       };
 
-      animate();
-
       const handleMouseMove = (event: MouseEvent) => {
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
-
-        setParticles((prevParticles) =>
-          prevParticles.map((particle) => {
-            const dx = particle.x - mouseX;
-            const dy = particle.y - mouseY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            const maxDistance = 100;
-
-            return {
-              ...particle,
-              color:
-                distance < maxDistance
-                  ? `${particle.color.slice(0, -4)}0.7)`
-                  : `${particle.color.slice(0, -4)}0.3)`,
-            };
-          })
-        );
+        mousePositionRef.current = {
+          x: event.clientX,
+          y: event.clientY,
+        };
       };
 
       window.addEventListener("mousemove", handleMouseMove);
+      animate();
 
       return () => {
         window.removeEventListener("mousemove", handleMouseMove);
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
       };
     }
-  }, [particles, dimensions]);
+
+    return () => window.removeEventListener("resize", updateCanvasSize);
+  }, []);
 
   return (
     <canvas
